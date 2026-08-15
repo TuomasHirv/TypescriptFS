@@ -37,7 +37,7 @@ const isNumber = (value: unknown): value is number =>
 const isNumberArray = (value: unknown): value is number[] =>
   Array.isArray(value) && value.every(isNumber);
 
-app.get("/excercizes", (req, res) => {
+app.post("/excercizes", (req, res) => {
   const { daily_exercises, target } = req.body as {
     daily_exercises: unknown;
     target: unknown;
