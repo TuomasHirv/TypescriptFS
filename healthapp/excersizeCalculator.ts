@@ -1,4 +1,4 @@
-interface ExcersizeValues {
+export interface ExcersizeValues {
   periodLength: number;
   trainingDays: number;
   success: boolean;
@@ -8,12 +8,14 @@ interface ExcersizeValues {
   average: number;
 }
 
-interface parsedArguments {
+export interface parsedArguments {
   period: number[];
   target: number;
 }
 
-const calculateExcersize = (periodOfTime: parsedArguments): ExcersizeValues => {
+export const calculateExcersize = (
+  periodOfTime: parsedArguments,
+): ExcersizeValues => {
   const period = periodOfTime.period;
   const target = periodOfTime.target;
 
