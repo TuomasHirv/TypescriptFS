@@ -29,7 +29,7 @@ app.get("/bmi", (req, res) => {
   return res.status(200).json(responseValues);
 });
 
-const PORT = 3003;
+const PORT = process.env.PORT ?? 3003;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
