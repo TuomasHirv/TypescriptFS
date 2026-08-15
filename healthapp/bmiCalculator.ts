@@ -41,7 +41,7 @@ if (process.argv[1] === import.meta.filename) {
     if (error instanceof Error) {
       throw error;
     } else {
-      throw new Error("unexpected error occurred");
+      throw new Error("unexpected error occurred", { cause: error });
     }
   }
 }

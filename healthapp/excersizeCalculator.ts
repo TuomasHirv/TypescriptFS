@@ -62,7 +62,7 @@ const getDescription = (rating: number): string => {
 
 const parseArguments = (args: string[]): parsedArguments => {
   if (args.length < 4) throw new Error("Not enough arguments");
-  let days: number[] = [];
+  const days: number[] = [];
   if (isNaN(Number(args[2]))) {
     throw new Error("Incorrect input all arguments should be numbers");
   }
