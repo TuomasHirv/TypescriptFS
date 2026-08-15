@@ -13,7 +13,7 @@ export interface parsedArguments {
   target: number;
 }
 
-export const calculateExcersize = (
+export const calculateExercises = (
   periodOfTime: parsedArguments,
 ): ExcersizeValues => {
   const period = periodOfTime.period;
@@ -84,7 +84,7 @@ const parseArguments = (args: string[]): parsedArguments => {
 
 try {
   const parsedArgs = parseArguments(process.argv);
-  console.log(calculateExcersize(parsedArgs));
+  console.log(calculateExercises(parsedArgs));
 } catch (error: unknown) {
   if (error instanceof Error) {
     console.log(error.message);

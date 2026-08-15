@@ -1,8 +1,9 @@
 import express from "express";
 const app = express();
+app.use(express.json());
 import { calculateBmi, type BmiArguments } from "./bmiCalculator.ts";
 import {
-  calculateExcersize,
+  calculateExercises,
   type parsedArguments,
 } from "./excersizeCalculator.ts";
 interface BmiResponse {
@@ -37,7 +38,7 @@ const isNumber = (value: unknown): value is number =>
 const isNumberArray = (value: unknown): value is number[] =>
   Array.isArray(value) && value.every(isNumber);
 
-app.post("/excercizes", (req, res) => {
+app.post("/exercises", (req, res) => {
   const { daily_exercises, target } = req.body as {
     daily_exercises: unknown;
     target: unknown;
@@ -52,7 +53,7 @@ app.post("/excercizes", (req, res) => {
     period: daily_exercises,
     target: target,
   };
-  const evaluation = calculateExcersize(args);
+  const evaluation = calculateExercises(args);
   return res.status(200).json(evaluation);
 });
 
