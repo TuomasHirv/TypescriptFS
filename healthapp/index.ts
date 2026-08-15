@@ -38,15 +38,20 @@ const isNumberArray = (value: unknown): value is number[] =>
   Array.isArray(value) && value.every(isNumber);
 
 app.get("/excercizes", (req, res) => {
-  const { daily_exercises, target } = req.body;
-  if (!daily_exercises || !target) {
+  const { daily_exercises, target } = req.body as {
+    daily_exercises: unknown;
+    target: unknown;
+  };
+  if (daily_exercises === undefined || target === undefined) {
     return res.status(400).json({ error: "parameters missing" });
   }
-  if (isNumber(target) || isNumberArray(daily_exercises)) {
+  if (!isNumber(target) || !isNumberArray(daily_exercises)) {
     return res.status(400).json({ error: "malformatted parameters" });
   }
-
-  const args: parsedArguments = { period: daily_exercises, target: target };
+  const args: parsedArguments = {
+    period: daily_exercises,
+    target: target,
+  };
   const evaluation = calculateExcersize(args);
   return res.status(200).json(evaluation);
 });
