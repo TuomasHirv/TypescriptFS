@@ -12,7 +12,8 @@ router.get("/", (_req, res: Response<patientNoSSN[]>) => {
 router.post("/", (req, res) => {
   try {
     const patient = parseNewPatient(req.body);
-    patientService.addPatient(patient);
+    const newPatient = patientService.addPatient(patient);
+    res.status(200).json(newPatient);
   } catch (error) {
     res.status(500).json(error);
   }

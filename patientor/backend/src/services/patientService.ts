@@ -18,7 +18,7 @@ const getData = (): patientNoSSN[] => {
   return returnableList;
 };
 
-const addPatient = (patient: newPatient) => {
+const addPatient = (patient: newPatient): patient => {
   const newUuid: string = uuid();
   const addablePatient: patient = {
     id: newUuid,
@@ -29,7 +29,7 @@ const addPatient = (patient: newPatient) => {
     occupation: patient.occupation,
   };
   patientsList.push(addablePatient);
-  return;
+  return addablePatient;
 };
 
 export default { getData, addPatient };
