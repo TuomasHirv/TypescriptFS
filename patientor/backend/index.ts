@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 const app = express();
-import diaryRouter from "./routes/diagnosisRouter.ts";
-import patientRouter from "./routes/patientsRouter.ts";
+import diaryRouter from "./src/routes/diagnosisRouter.ts";
+import patientRouter from "./src/routes/patientsRouter.ts";
 
 app.use(express.json());
 
