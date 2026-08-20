@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export const Gender = {
   Male: "male",
   Female: "female",
@@ -5,6 +7,15 @@ export const Gender = {
 } as const;
 
 export type Gender = (typeof Gender)[keyof typeof Gender];
+
+export const newPatientSchema = z.object({
+  name: z.string(),
+  dateOfBirth: z.iso.date(),
+  ssn: z.string(),
+  gender: z.enum(Gender),
+  occupation: z.string(),
+});
+
 export interface diagnosis {
   code: string;
   name: string;
@@ -19,7 +30,7 @@ export interface patient {
   occupation: string;
 }
 
-export type newPatient = Omit<patient, "id">;
+export type newPatient = z.infer<typeof newPatientSchema>;
 
 // I found that without: ssn?: never; TypeScript doesn't warn me if I return patient type instead
 // Something about patient being a subtype of patientNoSSN so I added it here I think its smart.
